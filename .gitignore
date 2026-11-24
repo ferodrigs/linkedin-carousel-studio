@@ -1,0 +1,17 @@
+# Byte-compiled / Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.env.local
+.venv/
+venv/
+
+# Temp & Previews
+*.tmp
+previews/
+_svg_assets/
+.DS_Store
+Thumbs.db

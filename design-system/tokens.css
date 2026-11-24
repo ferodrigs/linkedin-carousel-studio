@@ -1,0 +1,346 @@
+/* ==========================================================================
+   Fernando Rodrigues — LinkedIn Carousel Design System (v1.0)
+   Estética: Tech Minimalista Editorial + Bento Grid + Dithering + Geometria
+   Palco padrão: 4:5 Portrait (1080 x 1350 px)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap');
+
+:root {
+  /* Paleta Canônica */
+  --bg-stone: #F2F1ED;
+  --bg-stone-card: #E8E6DF;
+  --bg-carbon: #18181A;
+  --bg-carbon-card: #222226;
+  --bg-cobalt: #1D39FF;
+  --bg-cobalt-deep: #1224B8;
+
+  --ink-dark: #18181A;
+  --ink-muted-dark: #52525B;
+  --ink-light: #F2F1ED;
+  --ink-muted-light: #A1A1AA;
+
+  --accent-cobalt: #1D39FF;
+  --accent-lavender: #818CF8;
+  --accent-orange: #E85D26;
+  --accent-emerald: #10B981;
+
+  --border-light: rgba(24, 24, 26, 0.14);
+  --border-dark: rgba(242, 241, 237, 0.16);
+  --border-cobalt: rgba(29, 57, 255, 0.45);
+
+  /* Tipografia */
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Escala Mobile-First para 1080x1350 (legível em tela de 360px!) */
+  --text-hero: 72px;
+  --text-h1: 60px;
+  --text-h2: 44px;
+  --text-card-title: 34px;
+  --text-lead: 30px;
+  --text-body: 26px;
+  --text-caption: 22px;
+  --text-mono: 19px;
+
+  /* Dimensões do Palco */
+  --stage-w: 1080px;
+  --stage-h: 1350px;
+  --pad-x: 64px;
+  --pad-y: 52px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.slide {
+  width: var(--stage-w);
+  height: var(--stage-h);
+  padding: var(--pad-y) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Temas de Superfície */
+.slide--stone {
+  background-color: var(--bg-stone);
+  color: var(--ink-dark);
+}
+
+.slide--carbon {
+  background-color: var(--bg-carbon);
+  color: var(--ink-light);
+}
+
+.slide--cobalt {
+  background-color: var(--bg-cobalt);
+  color: var(--ink-light);
+}
+
+/* Textura Dot-Grid Sutil */
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(29, 57, 255, 0.18) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.slide--carbon.bg-dot-grid {
+  background-image: radial-gradient(rgba(242, 241, 237, 0.12) 1.5px, transparent 1.5px);
+}
+
+.slide--cobalt.bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1.5px, transparent 1.5px);
+}
+
+/* Header & Footer Canônicos */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1.5px dashed currentColor;
+  border-bottom-color: var(--border-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.slide--carbon .slide-header,
+.slide--cobalt .slide-header {
+  border-bottom-color: var(--border-dark);
+}
+
+.slide-header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.dot-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent-cobalt);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.slide--cobalt .dot-indicator {
+  background: #FFFFFF;
+}
+
+.slide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1.5px dashed var(--border-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  flex-shrink: 0;
+}
+
+.slide--carbon .slide-footer,
+.slide--cobalt .slide-footer {
+  border-top-color: var(--border-dark);
+}
+
+.slide-footer__brand {
+  opacity: 0.78;
+}
+
+.slide-footer__page {
+  font-weight: 600;
+  color: var(--accent-cobalt);
+}
+
+.slide--carbon .slide-footer__page {
+  color: var(--accent-lavender);
+}
+
+.slide--cobalt .slide-footer__page {
+  color: #FFFFFF;
+}
+
+/* Corpo Principal do Slide */
+.slide-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 0;
+  gap: 28px;
+  min-height: 0;
+}
+
+/* Tipografia Editorial & Técnica */
+.h-serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+.h-sans {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.38;
+  font-weight: 400;
+}
+
+.slide--stone .lead {
+  color: var(--ink-muted-dark);
+}
+
+.slide--carbon .lead {
+  color: var(--ink-muted-light);
+}
+
+.slide--cobalt .lead {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Bento Cards */
+.bento-card {
+  border-radius: 18px;
+  padding: 32px;
+  border: 1.5px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.slide--carbon .bento-card {
+  background: var(--bg-carbon-card);
+  border-color: var(--border-dark);
+}
+
+.slide--cobalt .bento-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.bento-card--cobalt-outline {
+  border: 2px solid var(--accent-cobalt);
+  background: rgba(29, 57, 255, 0.06);
+}
+
+.bento-card--dark {
+  background: var(--bg-carbon) !important;
+  color: var(--ink-light) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.bento-card--gradient {
+  background: linear-gradient(135deg, #1D39FF 0%, #3B5BFF 55%, #6D7BFF 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+.tag-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-cobalt);
+}
+
+.slide--carbon .tag-mono {
+  color: var(--accent-lavender);
+}
+
+.slide--cobalt .tag-mono,
+.bento-card--gradient .tag-mono {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.card-title {
+  font-size: var(--text-card-title);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.card-text {
+  font-size: var(--text-body);
+  line-height: 1.42;
+}
+
+.slide--stone .bento-card:not(.bento-card--dark):not(.bento-card--gradient) .card-text {
+  color: #3F3F46;
+}
+
+.slide--carbon .card-text,
+.bento-card--dark .card-text {
+  color: #D4D4D8;
+}
+
+/* Big Numbers */
+.big-number {
+  font-family: var(--font-serif);
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--accent-cobalt);
+}
+
+.slide--carbon .big-number {
+  color: var(--accent-lavender);
+}
+
+.bento-card--gradient .big-number {
+  color: #FFFFFF;
+}
+
+/* Terminal / Code Guardrail Block */
+.terminal-box {
+  background: #111114;
+  color: #E4E4E7;
+  border-radius: 16px;
+  padding: 28px 32px;
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  font-family: var(--font-mono);
+  font-size: 21px;
+  line-height: 1.55;
+}
+
+.terminal-box__bar {
+  height: 4px;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #1D39FF 0%, #10B981 50%, #E85D26 100%);
+  margin-bottom: 18px;
+}
+
+/* Grids Auxiliares */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.stack-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

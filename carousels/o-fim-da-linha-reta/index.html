@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Fim da Linha Reta — Fernando Rodrigues</title>
+  <link rel="stylesheet" href="../../design-system/tokens.css" />
+  <style>
+    body {
+      background: #0D0D10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 32px;
+    }
+    .hero-orbital-box {
+      flex: 1;
+      border-radius: 22px;
+      border: 1.5px solid rgba(29, 57, 255, 0.25);
+      background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(232,230,223,0.5) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+    }
+    .index-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 26px;
+      border-radius: 14px;
+      background: rgba(24, 24, 26, 0.05);
+      border: 1.5px solid var(--border-light);
+      font-family: var(--font-mono);
+      font-size: 19px;
+      font-weight: 500;
+    }
+    .quote-bar {
+      border-left: 5px solid var(--accent-cobalt);
+      padding-left: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SLIDE 01: CAPA -->
+  <section class="slide slide--stone bg-dot-grid" data-pptx-slide="1">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>FERNANDO RODRIGUES • NOTAS #04</span>
+      </div>
+      <span>/IN/FERNANDORODRIGS/</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <span class="tag-mono">2026 // O PONTO DE INFLEXÃO</span>
+        <h1 class="h-serif" style="font-size:74px;">O fim da linha reta para Design, Produto e Engenharia.</h1>
+        <p class="lead" style="font-size:30px;">Como a quebra da linearidade estrutural vai ditar a próxima década de criação digital.</p>
+      </div>
+
+      <div class="hero-orbital-box">
+        <svg viewBox="0 0 820 340" width="820" height="340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#1D39FF" stop-opacity="0.32" />
+              <stop offset="60%" stop-color="#818CF8" stop-opacity="0.14" />
+              <stop offset="100%" stop-color="#1D39FF" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="410" cy="160" r="155" fill="url(#glow1)" />
+          <line x1="60" y1="160" x2="760" y2="160" stroke="#18181A" stroke-opacity="0.22" stroke-width="2" stroke-dasharray="6 8" />
+          <ellipse cx="345" cy="160" rx="145" ry="96" fill="none" stroke="#1D39FF" stroke-width="2.5" />
+          <ellipse cx="475" cy="160" rx="145" ry="96" fill="none" stroke="#18181A" stroke-opacity="0.55" stroke-width="2" />
+          <ellipse cx="410" cy="160" rx="92" ry="92" fill="none" stroke="#1D39FF" stroke-width="2" stroke-opacity="0.6" />
+          <circle cx="245" cy="160" r="10" fill="#18181A" />
+          <circle cx="410" cy="160" r="15" fill="#1D39FF" />
+          <circle cx="575" cy="160" r="10" fill="#18181A" />
+          <text x="245" y="295" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600" fill="#18181A">DESIGN</text>
+          <text x="410" y="295" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="20" font-weight="700" fill="#1D39FF">PRODUTO</text>
+          <text x="575" y="295" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600" fill="#18181A">ENGENHARIA</text>
+        </svg>
+      </div>
+
+      <div class="index-strip">
+        <span>01. RUPTURA • 02. EFEITO MID • 03. CASES • 04. BRAND OS</span>
+        <span style="color:var(--accent-cobalt); font-weight:700;">ARRASTE →</span>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">01 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 02: MANIFESTO (LINA BO BARDI) -->
+  <section class="slide slide--carbon bg-dot-grid" data-pptx-slide="2">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>01 // PERSPECTIVA • THE ENTANGLED WONDER</span>
+      </div>
+      <span>MANIFESTO</span>
+    </header>
+
+    <div class="slide-body">
+      <div class="bento-card bento-card--gradient" style="flex:1; justify-content:space-between; padding:44px;">
+        <span class="tag-mono">// CITAÇÃO ÂNCORA</span>
+        <blockquote class="h-serif" style="font-size:48px; line-height:1.14; color:#FFFFFF;">
+          “O tempo não é linear, é um maravilhoso emaranhado onde, a qualquer instante, podem ser escolhidos pontos e inventadas soluções, sem começo nem fim.”
+        </blockquote>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <p style="font-size:25px; color:rgba(255,255,255,0.9);">
+            <strong>— Lina Bo Bardi</strong> <span style="opacity:0.8;">(via The Entangled Wonder, Google Creative Works)</span>
+          </p>
+          <svg viewBox="0 0 840 72" width="840" height="72" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20 36 Q 220 -10 420 36 T 820 36" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.85" />
+            <path d="M 20 36 Q 220 82 420 36 T 820 36" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.45" />
+            <circle cx="420" cy="36" r="9" fill="#FFFFFF" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="bento-card" style="padding:28px 34px;">
+        <span class="tag-mono">VIRADA DE PARADIGMA</span>
+        <p class="card-text" style="font-size:28px;">
+          A esteira industrial enrijeceu a criação digital. A próxima década exige trocar o passo a passo rígido por <strong>redes vivas de decisão</strong>.
+        </p>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">02 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 03: O PASSADO LINEAR -->
+  <section class="slide slide--stone" data-pptx-slide="3">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>02 // DIAGNÓSTICO • COMO CHEGAMOS AQUI</span>
+      </div>
+      <span>ERA LINEAR</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <h2 class="h-serif" style="font-size:60px;">Por décadas, construímos em linha reta.</h2>
+        <p class="lead">Herdamos a lógica de fábrica: etapas isoladas, passagem de bastão lenta e manuais estáticos.</p>
+      </div>
+
+      <div class="stack-3" style="flex:1; justify-content:center;">
+        <div class="bento-card">
+          <span class="tag-mono">01 // SILOS RÍGIDOS</span>
+          <h3 class="card-title">Pesquisa → Design → PM → Código</h3>
+          <p class="card-text">Disciplinas separadas por muros organizacionais, otimizando entregas locais em vez do problema real do usuário.</p>
+        </div>
+
+        <div class="bento-card">
+          <span class="tag-mono">02 // HANDOFFS INFINITOS</span>
+          <h3 class="card-title">Protótipos estáticos e meses de fila</h3>
+          <p class="card-text">Arquivos congelados enviados para a engenharia implementar ao longo de semanas, perdendo contexto a cada etapa.</p>
+        </div>
+
+        <div class="bento-card bento-card--cobalt-outline">
+          <span class="tag-mono">03 // DOCUMENTAÇÃO MORTA</span>
+          <h3 class="card-title">Manuais de marca em PDFs de 500 páginas</h3>
+          <p class="card-text">Regras passivas que ninguém conseguia aplicar em escala — até o momento em que a IA rompeu esse modelo.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">03 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 04: O PONTO DE RUPTURA (DADOS) -->
+  <section class="slide slide--stone bg-dot-grid" data-pptx-slide="4">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>03 // CENÁRIO ATUAL • A RUPTURA</span>
+      </div>
+      <span>CUSTO ZERO</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <h2 class="h-serif" style="font-size:58px;">A IA quebrou a linha. Testar ideias custa quase zero.</h2>
+        <p class="lead">O protótipo estático morreu. Hoje, o padrão mínimo de validação é software funcional construído em horas.</p>
+      </div>
+
+      <div class="grid-2" style="flex:1;">
+        <div class="bento-card bento-card--gradient" style="justify-content:space-between;">
+          <span class="tag-mono">FUSÃO DE PAPÉIS</span>
+          <div class="big-number" style="font-size:110px;">65%</div>
+          <p class="card-text" style="color:#FFFFFF; font-size:27px;">
+            dos designers já acumulam decisões diretas de Produto e Engenharia no dia a dia.
+          </p>
+          <span style="font-family:var(--font-mono); font-size:18px; opacity:0.85;">Fonte: Designer Fund</span>
+        </div>
+
+        <div class="bento-card" style="justify-content:space-between; background:#FFFFFF;">
+          <span class="tag-mono">ALAVANCAGEM AGÊNTICA</span>
+          <div class="big-number" style="font-size:110px;">1 : 3</div>
+          <p class="card-text" style="font-size:27px;">
+            um único profissional orquestrando agentes entrega hoje o escopo de três times tradicionais.
+          </p>
+          <span style="font-family:var(--font-mono); font-size:18px; color:var(--ink-muted-dark);">Fonte: Kent C. Dodds (GitHub)</span>
+        </div>
+      </div>
+
+      <div class="bento-card bento-card--dark" style="padding:28px 34px;">
+        <span class="tag-mono" style="color:var(--accent-lavender);">// MUDANÇA DE EIXO</span>
+        <p class="card-text" style="font-size:27px;">
+          O gargalo deixou de ser escrever código ou desenhar telas — passou a ser a <strong>clareza sobre o que merece existir</strong>.
+        </p>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">04 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 05: O PARADOXO ATUAL -->
+  <section class="slide slide--carbon" data-pptx-slide="5">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>04 // ALERTA • PARADOXO DA VELOCIDADE</span>
+      </div>
+      <span>ARMADILHA</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <h2 class="h-serif" style="font-size:58px;">Quando qualquer um constrói, o risco é a mesmice.</h2>
+        <p class="lead">A velocidade de entrega explodiu, mas o julgamento crítico humano não acompanhou o mesmo ritmo.</p>
+      </div>
+
+      <div class="stack-3" style="flex:1; justify-content:center;">
+        <div class="bento-card">
+          <span class="tag-mono">01 // IDEA SLOP (MEGAN • ANTHROPIC)</span>
+          <h3 class="card-title">Demos feitas no fim de semana que ninguém pediu</h3>
+          <p class="card-text">Como construir ficou barato, os times são inundados por funcionalidades soltas que inflam o produto sem resolver dores reais.</p>
+        </div>
+
+        <div class="bento-card" style="border-color:var(--accent-cobalt); background:rgba(29,57,255,0.14);">
+          <span class="tag-mono">02 // O EFEITO MID (GOOGLE CREATIVE WORKS)</span>
+          <h3 class="card-title">O oceano de produtos tecnicamente “ok”, mas sem alma</h3>
+          <p class="card-text">Mesmos modelos, mesmos dados e mesmos templates geram uma monocultura previsível incapaz de vencer a indiferença.</p>
+        </div>
+      </div>
+
+      <div class="bento-card" style="flex-direction:row; align-items:center; justify-content:space-between; padding:26px 32px; background:#111114;">
+        <span class="big-number" style="font-size:64px; color:var(--accent-orange);">78%</span>
+        <p class="card-text" style="font-size:25px; max-width:690px;">
+          dos CMOs alertam que otimizar apenas para algoritmos acelera um mar de mesmice <strong>(Dentsu 2026)</strong>.
+        </p>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">05 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 06: CASE 01 (BURBN -> INSTAGRAM) -->
+  <section class="slide slide--stone" data-pptx-slide="6">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>05 // CASE 01 • CONTENÇÃO ESTRATÉGICA</span>
+      </div>
+      <span>PRODUTO</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <h2 class="h-serif" style="font-size:58px;">O poder de dizer “não” quando dá para fazer tudo.</h2>
+      </div>
+
+      <div class="bento-card" style="flex:1; justify-content:space-between; background:#FFFFFF; padding:36px;">
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <span class="tag-mono">DO BURBN AO INSTAGRAM</span>
+          <p class="card-text" style="font-size:28px;">
+            O <strong>Burbn</strong> nasceu como um app inchado: check-ins, planos de fim de semana, pontos e gamificação. Kevin Systrom cortou 90% do escopo e manteve uma única ação: <strong>compartilhar fotos com filtros</strong>.
+          </p>
+        </div>
+
+        <svg viewBox="0 0 840 190" width="840" height="190" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="16" width="320" height="156" rx="16" fill="#F2F1ED" stroke="#18181A" stroke-opacity="0.16" stroke-width="2" />
+          <circle cx="70" cy="64" r="12" fill="#A1A1AA" />
+          <circle cx="130" cy="64" r="12" fill="#A1A1AA" />
+          <circle cx="190" cy="64" r="12" fill="#A1A1AA" />
+          <circle cx="250" cy="64" r="12" fill="#A1A1AA" />
+          <circle cx="70" cy="118" r="12" fill="#A1A1AA" />
+          <circle cx="130" cy="118" r="12" fill="#A1A1AA" />
+          <circle cx="190" cy="118" r="12" fill="#A1A1AA" />
+          <circle cx="250" cy="118" r="14" fill="#1D39FF" />
+          <text x="170" y="156" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#52525B">90% RUÍDO DESCARTADO</text>
+
+          <line x1="350" y1="94" x2="480" y2="94" stroke="#1D39FF" stroke-width="3" />
+          <polygon points="480,84 500,94 480,104" fill="#1D39FF" />
+          <text x="425" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="17" font-weight="700" fill="#1D39FF">CURADORIA</text>
+
+          <rect x="515" y="16" width="315" height="156" rx="16" fill="#1D39FF" fill-opacity="0.08" stroke="#1D39FF" stroke-width="2.5" />
+          <circle cx="672" cy="78" r="28" fill="#1D39FF" />
+          <text x="672" y="142" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700" fill="#1D39FF">VALOR ESSENCIAL</text>
+        </svg>
+      </div>
+
+      <div class="quote-bar">
+        <p class="h-serif" style="font-size:38px; line-height:1.2;">
+          “Construir ficou rápido. Difícil é decidir o que merece existir.”
+        </p>
+        <span style="font-family:var(--font-mono); font-size:20px; color:var(--ink-muted-dark);">— Kent C. Dodds (GitHub)</span>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">06 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 07: CASE 02 (ANTHROPIC PODS FLUIDOS) -->
+  <section class="slide slide--stone bg-dot-grid" data-pptx-slide="7">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>06 // CASE 02 • PODS FLUIDOS</span>
+      </div>
+      <span>ANTHROPIC</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <h2 class="h-serif" style="font-size:58px;">O fim do handoff estático na Anthropic.</h2>
+        <p class="lead">No <strong>Claude Code Desktop</strong>, as fronteiras entre Design e Engenharia deram lugar à co-execução em tempo real.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="bento-card" style="background:#FFFFFF;">
+          <span class="tag-mono">DESIGN NO REPOSITÓRIO</span>
+          <h3 class="card-title">Pull Requests diretos</h3>
+          <p class="card-text">Designers ajustam microinterações, espaçamentos e estados direto em produção, sem tradução perdida.</p>
+        </div>
+
+        <div class="bento-card bento-card--dark">
+          <span class="tag-mono" style="color:var(--accent-lavender);">CRITÉRIO COMPARTILHADO</span>
+          <h3 class="card-title">Definição única de “pronto”</h3>
+          <p class="card-text">Engenheiros participam da experiência desde a hipótese; designers pensam em arquitetura e latência.</p>
+        </div>
+      </div>
+
+      <div class="bento-card" style="flex:1; justify-content:center; align-items:center; background:#FFFFFF;">
+        <svg viewBox="0 0 840 210" width="840" height="210" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="55" width="220" height="96" rx="16" fill="#F2F1ED" stroke="#18181A" stroke-width="2" />
+          <text x="130" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700" fill="#18181A">HIPÓTESE</text>
+
+          <line x1="250" y1="103" x2="305" y2="103" stroke="#1D39FF" stroke-width="3" />
+          <rect x="310" y="55" width="220" height="96" rx="16" fill="#1D39FF" fill-opacity="0.12" stroke="#1D39FF" stroke-width="2.5" />
+          <text x="420" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700" fill="#1D39FF">CÓDIGO VIVO</text>
+
+          <line x1="540" y1="103" x2="595" y2="103" stroke="#1D39FF" stroke-width="3" />
+          <rect x="600" y="55" width="220" height="96" rx="16" fill="#18181A" />
+          <text x="710" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700" fill="#FFFFFF">PRODUÇÃO</text>
+        </svg>
+        <span style="font-family:var(--font-mono); font-size:19px; color:var(--ink-muted-dark);">CICLO CONTÍNUO SEM FILA DE ESPERA</span>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">07 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 08: PRÓXIMA DÉCADA PILAR 01 (BRAND OS & MCP) -->
+  <section class="slide slide--cobalt bg-dot-grid" data-pptx-slide="8">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>07 // PRÓXIMA DÉCADA • PILAR 01</span>
+      </div>
+      <span>BRAND OS &amp; MCP</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <h2 class="h-serif" style="font-size:60px;">De PDFs estáticos para Brand OS e MCPs.</h2>
+        <p class="lead">Não se governa uma revolução descentralizada proibindo ferramentas. Diretrizes de marca viram infraestrutura viva.</p>
+      </div>
+
+      <div class="bento-card" style="background:#FFFFFF; color:#18181A; flex:1; justify-content:space-between; padding:38px;">
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <span class="tag-mono" style="color:var(--accent-cobalt);">ARQUITETURA DE GOVERNANÇA // AIGA × FLORA</span>
+          <h3 class="card-title" style="font-size:38px;">Identidade como fonte única legível por máquinas</h3>
+          <p class="card-text" style="color:#3F3F46; font-size:27px;">
+            Em vez de prompts repetitivos, servidores <strong>MCP (Model Context Protocol)</strong> conectam tokens, regras de acessibilidade, tom de voz e guardrails direto nas ferramentas dos times (Figma, IDEs e agentes).
+          </p>
+        </div>
+
+        <div class="terminal-box">
+          <div class="terminal-box__bar"></div>
+          <div>PROTOCOLO :: MCP_BRAND_CONTEXT_V2</div>
+          <div style="color:#818CF8;">TOKENS &amp; GUARDRAILS &gt;&gt; INJETADOS EM TEMPO REAL</div>
+          <div style="color:#10B981;">STATUS :: ESCALA DESCENTRALIZADA COM COESÃO</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">08 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 09: PRÓXIMA DÉCADA PILAR 02 (CRAFT & JULGAMENTO) -->
+  <section class="slide slide--stone" data-pptx-slide="9">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>08 // PRÓXIMA DÉCADA • PILAR 02</span>
+      </div>
+      <span>CRAFT &amp; CRITÉRIO</span>
+    </header>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <h2 class="h-serif" style="font-size:58px;">Julgamento crítico e Craft como diferencial.</h2>
+        <p class="lead"><strong>81% dos CMOs</strong> afirmam que criatividade humana é insubstituível contra a padronização (Dentsu 2026). Produção virou commodity; intenção é o produto.</p>
+      </div>
+
+      <div class="grid-2" style="flex:1;">
+        <div class="bento-card" style="background:#FFFFFF; justify-content:space-between;">
+          <span class="tag-mono">DE BIG IDEAS PARA</span>
+          <h3 class="card-title">Curadoria de Hipóteses</h3>
+          <p class="card-text">Explorar dezenas de caminhos e filtrar com rigor o que tem aderência cultural real.</p>
+        </div>
+
+        <div class="bento-card" style="background:#FFFFFF; justify-content:space-between;">
+          <span class="tag-mono">DE CAMPANHAS FIXAS PARA</span>
+          <h3 class="card-title">Canvas Adaptáveis</h3>
+          <p class="card-text">Sistemas modulares que se ajustam ao contexto sem perder a assinatura da marca.</p>
+        </div>
+
+        <div class="bento-card bento-card--cobalt-outline" style="justify-content:space-between;">
+          <span class="tag-mono">DE AUTOMATIZAÇÃO PARA</span>
+          <h3 class="card-title">Craft Re-imaginado</h3>
+          <p class="card-text">Sensibilidade, detalhe e acabamento humano que vencem a indiferença do feed.</p>
+        </div>
+
+        <div class="bento-card bento-card--dark" style="justify-content:space-between;">
+          <span class="tag-mono" style="color:var(--accent-lavender);">DE SILOS ISOLADOS PARA</span>
+          <h3 class="card-title">Criatividade Sistematizada</h3>
+          <p class="card-text">Design, Produto e Engenharia operando como um único organismo vivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">09 / 10 →</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 10: SÍNTESE & CTA -->
+  <section class="slide slide--carbon bg-dot-grid" data-pptx-slide="10">
+    <header class="slide-header">
+      <div class="slide-header__left">
+        <span class="dot-indicator"></span>
+        <span>09 // SÍNTESE &amp; DEBATE • 2026 — 2036</span>
+      </div>
+      <span>FIM</span>
+    </header>
+
+    <div class="slide-body" style="justify-content:space-between;">
+      <div style="display:flex; flex-direction:column; gap:24px; margin-top:24px;">
+        <h2 class="h-serif" style="font-size:70px; line-height:1.05;">A IA pode construir qualquer coisa.</h2>
+        <p class="h-serif" style="font-size:48px; line-height:1.14; color:var(--accent-lavender);">
+          O que você vai escolher construir que melhore a vida de 1 milhão de pessoas?
+        </p>
+      </div>
+
+      <div class="bento-card" style="padding:36px; gap:20px; background:rgba(29,57,255,0.14); border-color:var(--accent-cobalt);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="tag-mono">// PRÓXIMO PASSO &amp; DEBATE</span>
+          <svg viewBox="0 0 64 64" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="32" rx="26" ry="12" transform="rotate(-24 32 32)" fill="none" stroke="#818CF8" stroke-width="2.5" />
+            <ellipse cx="32" cy="32" rx="26" ry="12" transform="rotate(24 32 32)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.7" />
+            <circle cx="32" cy="32" r="5" fill="#1D39FF" />
+          </svg>
+        </div>
+        <p class="card-text" style="font-size:29px; color:#FFFFFF;">
+          Salve este marco para revisar o fluxo do seu time e comente abaixo: <strong>onde a linha reta já quebrou na sua operação?</strong>
+        </p>
+      </div>
+    </div>
+
+    <footer class="slide-footer">
+      <span class="slide-footer__brand">fernando rodrigues • /in/fernandorodrigs/</span>
+      <span class="slide-footer__page">10 / 10 • FIM</span>
+    </footer>
+  </section>
+
+</body>
+</html>

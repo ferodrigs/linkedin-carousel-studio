@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Carousel Studio — Fernando Rodrigues</title>
+  <style>
+    :root {
+      --bg: #09090B;
+      --panel: #111114;
+      --panel-2: #18181B;
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #F4F4F5;
+      --muted: #A1A1AA;
+      --cobalt: #1D39FF;
+      --cobalt-light: #637BFF;
+      --green: #10B981;
+      --amber: #F59E0B;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    header {
+      height: 56px;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+    .brand-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--cobalt);
+      box-shadow: 0 0 12px var(--cobalt);
+    }
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    select, button {
+      font-family: inherit;
+      font-size: 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    button:hover { border-color: rgba(255,255,255,0.25); background: #222227; }
+    button.primary { background: var(--cobalt); border-color: var(--cobalt); font-weight: 600; }
+    button.primary:hover { background: #2946FF; }
+    button.active { border-color: var(--cobalt-light); color: var(--cobalt-light); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .workspace {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      min-height: 0;
+    }
+    .stage-area {
+      background: #0D0D10;
+      overflow: auto;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+    .slide-frame-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .slide-meta-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: ui-monospace, monospace;
+    }
+    .badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.14);
+      color: var(--green);
+    }
+    .badge.warn {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber);
+    }
+    iframe#deckFrame {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #18181A;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .stage-iframe-shell {
+      width: 100%;
+      max-width: 1120px;
+      height: calc(100vh - 110px);
+      display: flex;
+      justify-content: center;
+      transition: max-width 0.2s ease;
+    }
+    .stage-iframe-shell.mobile-mode {
+      max-width: 390px;
+    }
+
+    .inspector {
+      border-left: 1px solid var(--border);
+      background: var(--panel);
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .sec-title {
+      font-size: 11px;
+      font-family: ui-monospace, monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .control-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .control-label strong { color: var(--text); font-family: ui-monospace, monospace; }
+    input[type="range"] { width: 100%; accent-color: var(--cobalt); }
+    textarea {
+      width: 100%;
+      min-height: 90px;
+      background: #0D0D10;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      resize: vertical;
+    }
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .status-log {
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--muted);
+      background: #09090B;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      white-space: pre-wrap;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+    .slide-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .slide-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: #0D0D10;
+      border: 1px solid transparent;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .slide-item:hover { border-color: var(--border); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>LinkedIn Carousel Studio</span>
+      <select id="carouselSelect"></select>
+    </div>
+    <div class="toolbar-group">
+      <button id="btnDesktop" class="active">Palco 100%</button>
+      <button id="btnMobile">Simular Celular (360px)</button>
+      <button id="btnSave">Salvar HTML</button>
+      <button id="btnPdf" class="primary">Exportar PDF</button>
+      <button id="btnPptx" class="primary">Exportar PPTX</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <div class="stage-area">
+      <div class="stage-iframe-shell" id="iframeShell">
+        <iframe id="deckFrame"></iframe>
+      </div>
+    </div>
+
+    <aside class="inspector">
+      <div>
+        <div class="sec-title">Auditoria de Legibilidade (LinkedIn 4:5)</div>
+        <div class="card">
+          <div class="slide-list" id="slideAuditList">
+            <span style="font-size:12px;color:var(--muted)">Carregando slides...</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">Elemento Selecionado (Clique no slide)</div>
+        <div class="card" id="elementControls">
+          <div style="font-size:12px;color:var(--muted)" id="selectedTag">
+            Clique em qualquer texto ou card dentro do slide para ajustar tamanho, espaçamento ou conteúdo.
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Tamanho da Fonte</span>
+              <strong id="valFontSize">--</strong>
+            </div>
+            <input type="range" id="rngFontSize" min="14" max="110" step="1" disabled />
+            <div class="btn-row">
+              <button id="btnFontMinus" disabled>- 2px</button>
+              <button id="btnFontPlus" disabled>+ 2px</button>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Altura da Linha (Line Height)</span>
+              <strong id="valLineHeight">--</strong>
+            </div>
+            <input type="range" id="rngLineHeight" min="0.9" max="1.8" step="0.02" disabled />
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Espaçamento Interno (Padding)</span>
+              <strong id="valPadding">--</strong>
+            </div>
+            <input type="range" id="rngPadding" min="0" max="72" step="2" disabled />
+          </div>
+
+          <div class="control-row">
+            <div class="control-label"><span>Texto do Elemento</span></div>
+            <textarea id="txtContent" disabled placeholder="Selecione um texto..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">Saída & Exportação</div>
+        <div class="status-log" id="statusLog">Pronto. Clique em qualquer elemento do carrossel para editar.</div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const carouselSelect = document.getElementById('carouselSelect');
+    const deckFrame = document.getElementById('deckFrame');
+    const iframeShell = document.getElementById('iframeShell');
+    const slideAuditList = document.getElementById('slideAuditList');
+    const statusLog = document.getElementById('statusLog');
+
+    const selectedTag = document.getElementById('selectedTag');
+    const rngFontSize = document.getElementById('rngFontSize');
+    const valFontSize = document.getElementById('valFontSize');
+    const btnFontMinus = document.getElementById('btnFontMinus');
+    const btnFontPlus = document.getElementById('btnFontPlus');
+    const rngLineHeight = document.getElementById('rngLineHeight');
+    const valLineHeight = document.getElementById('valLineHeight');
+    const rngPadding = document.getElementById('rngPadding');
+    const valPadding = document.getElementById('valPadding');
+    const txtContent = document.getElementById('txtContent');
+
+    let currentSlug = null;
+    let selectedEl = null;
+
+    function log(msg) {
+      statusLog.textContent = msg;
+    }
+
+    async function loadCarousels() {
+      const res = await fetch('/api/carousels');
+      const data = await res.json();
+      carouselSelect.innerHTML = '';
+      for (const c of data.carousels) {
+        const opt = document.createElement('option');
+        opt.value = c.slug;
+        opt.textContent = c.slug;
+        carouselSelect.appendChild(opt);
+      }
+      if (data.carousels.length > 0) {
+        loadCarousel(data.carousels[0].slug);
+      }
+    }
+
+    function loadCarousel(slug) {
+      currentSlug = slug;
+      selectedEl = null;
+      deckFrame.src = `/carousels/${slug}/index.html?t=${Date.now()}`;
+      log(`Carregado: ${slug}`);
+    }
+
+    carouselSelect.addEventListener('change', () => loadCarousel(carouselSelect.value));
+
+    function updateAudit() {
+      const doc = deckFrame.contentDocument;
+      if (!doc) return;
+      const slides = doc.querySelectorAll('.slide, [data-pptx-slide]');
+      slideAuditList.innerHTML = '';
+      slides.forEach((slide, idx) => {
+        const words = (slide.innerText || '').trim().split(/\s+/).filter(Boolean).length;
+        const bodyTexts = slide.querySelectorAll('.card-text, .lead, p, li');
+        let minPx = 999;
+        bodyTexts.forEach(el => {
+          const fs = parseFloat(getComputedStyle(el).fontSize);
+          if (fs > 0 && fs < minPx) minPx = Math.round(fs);
+        });
+        if (minPx === 999) minPx = 26;
+        const isOk = minPx >= 24 && words <= 65;
+
+        const item = document.createElement('div');
+        item.className = 'slide-item';
+        item.innerHTML = `
+          <span>Slide ${String(idx + 1).padStart(2, '0')} · ${words} palavras</span>
+          <span class="badge ${isOk ? '' : 'warn'}">${minPx}px min</span>
+        `;
+        item.addEventListener('click', () => {
+          slide.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        slideAuditList.appendChild(item);
+      });
+    }
+
+    function bindIframeInteractions() {
+      const doc = deckFrame.contentDocument;
+      if (!doc) return;
+
+      // Inject studio selection highlight CSS (removed on save)
+      let st = doc.getElementById('__studio_overlay_css');
+      if (!st) {
+        st = doc.createElement('style');
+        st.id = '__studio_overlay_css';
+        st.textContent = `
+          [data-studio-selected="true"] {
+            outline: 3px solid #1D39FF !important;
+            outline-offset: 4px !important;
+          }
+          body {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 28px !important;
+            padding: 24px !important;
+            background: #0D0D10 !important;
+          }
+          .slide {
+            zoom: 0.56;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+            border-radius: 8px;
+          }
+        `;
+        doc.head.appendChild(st);
+      }
+
+      doc.addEventListener('click', (e) => {
+        const target = e.target;
+        if (!target || target === doc.body || target === doc.documentElement) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (selectedEl) selectedEl.removeAttribute('data-studio-selected');
+        selectedEl = target;
+        selectedEl.setAttribute('data-studio-selected', 'true');
+
+        const cs = doc.defaultView.getComputedStyle(selectedEl);
+        const fs = Math.round(parseFloat(cs.fontSize) || 26);
+        const lhRaw = parseFloat(cs.lineHeight);
+        const lh = lhRaw && fs ? +(lhRaw / fs).toFixed(2) : 1.3;
+        const pad = Math.round(parseFloat(cs.paddingTop) || 0);
+
+        selectedTag.textContent = `<${selectedEl.tagName.toLowerCase()}> ${selectedEl.className ? '.' + selectedEl.className.split(' ').join('.') : ''}`;
+        rngFontSize.disabled = false;
+        btnFontMinus.disabled = false;
+        btnFontPlus.disabled = false;
+        rngLineHeight.disabled = false;
+        rngPadding.disabled = false;
+
+        rngFontSize.value = fs;
+        valFontSize.textContent = `${fs}px`;
+        rngLineHeight.value = lh;
+        valLineHeight.textContent = lh;
+        rngPadding.value = pad;
+        valPadding.textContent = `${pad}px`;
+
+        const hasOnlyText = selectedEl.children.length === 0;
+        txtContent.disabled = !hasOnlyText;
+        txtContent.value = hasOnlyText ? selectedEl.textContent.trim() : '(Selecione o elemento de texto direto para editar conteúdo)';
+      });
+
+      updateAudit();
+    }
+
+    deckFrame.addEventListener('load', bindIframeInteractions);
+
+    function setFontSize(px) {
+      if (!selectedEl) return;
+      selectedEl.style.fontSize = `${px}px`;
+      valFontSize.textContent = `${px}px`;
+      rngFontSize.value = px;
+      updateAudit();
+    }
+
+    rngFontSize.addEventListener('input', () => setFontSize(Number(rngFontSize.value)));
+    btnFontMinus.addEventListener('click', () => setFontSize(Math.max(14, Number(rngFontSize.value) - 2)));
+    btnFontPlus.addEventListener('click', () => setFontSize(Math.min(110, Number(rngFontSize.value) + 2)));
+
+    rngLineHeight.addEventListener('input', () => {
+      if (!selectedEl) return;
+      selectedEl.style.lineHeight = rngLineHeight.value;
+      valLineHeight.textContent = rngLineHeight.value;
+    });
+
+    rngPadding.addEventListener('input', () => {
+      if (!selectedEl) return;
+      selectedEl.style.padding = `${rngPadding.value}px`;
+      valPadding.textContent = `${rngPadding.value}px`;
+    });
+
+    txtContent.addEventListener('input', () => {
+      if (!selectedEl || selectedEl.children.length > 0) return;
+      selectedEl.textContent = txtContent.value;
+      updateAudit();
+    });
+
+    document.getElementById('btnDesktop').addEventListener('click', () => {
+      iframeShell.classList.remove('mobile-mode');
+      document.getElementById('btnDesktop').classList.add('active');
+      document.getElementById('btnMobile').classList.remove('active');
+      const st = deckFrame.contentDocument?.getElementById('__studio_overlay_css');
+      if (st) st.textContent = st.textContent.replace(/zoom:\s*[\d.]+;/, 'zoom: 0.56;');
+    });
+
+    document.getElementById('btnMobile').addEventListener('click', () => {
+      iframeShell.classList.add('mobile-mode');
+      document.getElementById('btnMobile').classList.add('active');
+      document.getElementById('btnDesktop').classList.remove('active');
+      const st = deckFrame.contentDocument?.getElementById('__studio_overlay_css');
+      if (st) st.textContent = st.textContent.replace(/zoom:\s*[\d.]+;/, 'zoom: 0.31;');
+    });
+
+    async function saveHtml() {
+      const doc = deckFrame.contentDocument;
+      if (!doc || !currentSlug) return;
+      const clone = doc.documentElement.cloneNode(true);
+      clone.querySelector('#__studio_overlay_css')?.remove();
+      clone.querySelectorAll('[data-studio-selected]').forEach(el => el.removeAttribute('data-studio-selected'));
+      const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+      const res = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: currentSlug, html })
+      });
+      const data = await res.json();
+      log(data.ok ? `HTML salvo com sucesso em carousels/${currentSlug}/index.html` : `Erro: ${data.error}`);
+    }
+
+    async function exportDeck(mode) {
+      await saveHtml();
+      log(`Exportando ${mode.toUpperCase()}... aguarde (Chromium + Motor Vectorial)...`);
+      const res = await fetch('/api/export', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: currentSlug, mode })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        log(`Exportação concluída!\nPDF: ${data.pdf_url || '-'}\nPPTX: ${data.pptx_url || '-'}`);
+        const url = mode === 'pptx' ? data.pptx_url : data.pdf_url;
+        if (url) window.open(url, '_blank');
+      } else {
+        log(`Erro na exportação:\n${data.error}`);
+      }
+    }
+
+    document.getElementById('btnSave').addEventListener('click', saveHtml);
+    document.getElementById('btnPdf').addEventListener('click', () => exportDeck('pdf'));
+    document.getElementById('btnPptx').addEventListener('click', () => exportDeck('pptx'));
+
+    loadCarousels();
+  </script>
+</body>
+</html>
