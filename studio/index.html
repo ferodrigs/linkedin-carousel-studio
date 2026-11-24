@@ -236,6 +236,45 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
+
+    /* Export Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 9, 11, 0.78);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+    }
+    .loading-overlay.show {
+      display: flex;
+    }
+    .loading-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+      max-width: 360px;
+      text-align: center;
+    }
+    .spinner {
+      width: 38px;
+      height: 38px;
+      border: 3px solid rgba(255,255,255,0.12);
+      border-top-color: var(--cobalt-light);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -327,6 +366,14 @@
   </div>
 
   <div class="toast" id="toast"></div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <div style="font-weight:600; font-size:15px;" id="loadingTitle">Exportando arquivo...</div>
+      <div style="font-size:12px; color:var(--muted);" id="loadingSub">Renderizando slides no Chromium e montando vetores 1:1.</div>
+    </div>
+  </div>
 
   <script>
     const carouselSelect = document.getElementById('carouselSelect');
@@ -650,21 +697,44 @@
     }
 
     async function exportDeck(mode) {
+      const btnPdf = document.getElementById('btnPdf');
+      const btnPptx = document.getElementById('btnPptx');
+      const overlay = document.getElementById('loadingOverlay');
+      const loadingTitle = document.getElementById('loadingTitle');
+      const loadingSub = document.getElementById('loadingSub');
+
       await saveHtml();
+      btnPdf.disabled = true;
+      btnPptx.disabled = true;
+      loadingTitle.textContent = `Exportando ${mode.toUpperCase()}...`;
+      loadingSub.textContent = mode === 'pptx'
+        ? 'Medindo DOM no Chromium e convertendo camadas editáveis (pode levar ~20-30s).'
+        : 'Gerando PDF vetorial 1:1 sem margens no Chromium.';
+      overlay.classList.add('show');
       log(`Exportando ${mode.toUpperCase()}... aguarde (Chromium + Motor Vetorial)...`);
-      const res = await fetch('/api/export', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug: currentSlug, mode })
-      });
-      const data = await res.json();
-      if (data.ok) {
-        log(`Exportação concluída!\nPDF: ${data.pdf_url || '-'}\nPPTX: ${data.pptx_url || '-'}`);
-        showToast(`✓ ${mode.toUpperCase()} exportado com sucesso!`);
-        const url = mode === 'pptx' ? data.pptx_url : data.pdf_url;
-        if (url) window.open(url, '_blank');
-      } else {
-        log(`Erro na exportação:\n${data.error}`);
+
+      try {
+        const res = await fetch('/api/export', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug: currentSlug, mode })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          log(`Exportação concluída!\nPDF: ${data.pdf_url || '-'}\nPPTX: ${data.pptx_url || '-'}`);
+          showToast(`✓ ${mode.toUpperCase()} exportado com sucesso!`);
+          const url = mode === 'pptx' ? data.pptx_url : data.pdf_url;
+          if (url) window.open(url, '_blank');
+        } else {
+          log(`Erro na exportação:\n${data.error}`);
+          showToast(`Erro ao exportar ${mode.toUpperCase()}`);
+        }
+      } catch (err) {
+        log(`Erro de rede na exportação: ${err}`);
+      } finally {
+        overlay.classList.remove('show');
+        btnPdf.disabled = false;
+        btnPptx.disabled = false;
       }
     }
 
